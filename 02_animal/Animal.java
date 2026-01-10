@@ -1,6 +1,3 @@
-// Save as Main.java
-
-// --- 1. Enum ---
 enum Color {
     BLACK, WHITE, GREY, BROWN, DARK_BROWN, BLACK_STRIPES, WHITE_STRIPES
 }
@@ -9,12 +6,10 @@ enum Size {
     SMALL, MEDIUM, LARGE, HUGE
 }
 
-// --- 2. Abstract Class: Animal ---
 abstract class Animal {
     protected Color color;
     protected Size size;
 
-    // Constructor
     public Animal(Color color, Size size) {
         this.color = color;
         this.size = size;
@@ -23,13 +18,14 @@ abstract class Animal {
     public abstract void sound();
     public abstract void eat();
 
-    public void printInfo() {
-        System.out.println("--- " + this.getClass().getSimpleName() + " ---");
-        System.out.println("Color: " + color + ", Size: " + size);
+    public void info() {
+        System.out.println("__" + this.getClass().getSimpleName() + "__");
+        System.out.println("Color: " + color + " Size: " + size);
     }
 }
 
-// --- 3. Intermediate Classes ---
+// ======================
+
 abstract class Mammalia extends Animal {
     protected int numberBabies;
 
@@ -39,7 +35,7 @@ abstract class Mammalia extends Animal {
     }
 
     public void run() {
-        System.out.println("Moving: Running on the ground.");
+        System.out.println("Moving: Running on the ground");
     }
 }
 
@@ -49,7 +45,7 @@ abstract class Aves extends Animal {
     }
 
     public void fly() {
-        System.out.println("Moving: Flying in the sky.");
+        System.out.println("Moving: Flying in the sky");
     }
 }
 
@@ -58,12 +54,13 @@ abstract class Osteichthyes extends Animal {
         super(color, size);
     }
 
-    public void swimming() {
-        System.out.println("Moving: Swimming in the water.");
+    public void swim() {
+        System.out.println("Moving: Swimming in the sea");
     }
 }
 
-// --- 4. Concrete Classes ---
+// ======================
+
 class Dog extends Mammalia {
     protected boolean fierce;
 
@@ -74,40 +71,40 @@ class Dog extends Mammalia {
 
     @Override
     public void sound() {
-        System.out.println("Sound: Woof Woof!");
+        System.out.println("Sound: Wolf wolf");
     }
 
     @Override
     public void eat() {
-        System.out.println("Eat: Dog food and bones.");
+        System.out.println("Food: Bones");
     }
 
     public void bark() {
-        System.out.println("Action: Barking loudly!");
+        System.out.println("Action: Barking loud!");
     }
 
     public void bite() {
-    System.out.println("Fierce Status: " + fierce); 
-    System.out.println("Action: Warning! It bites!");
-  }
+        System.out.println("Fierce Status: " + fierce);
+        System.out.println("It gonna bite you");
+    }
 }
 
 class Bird extends Aves {
-    protected String eggDesc;
+    protected String egg;
 
-    public Bird(Color color, Size size, String eggDesc) {
+    public Bird(Color color, Size size, String egg) {
         super(color, size);
-        this.eggDesc = eggDesc;
+        this.egg = egg;
     }
 
     @Override
     public void sound() {
-        System.out.println("Sound: Chirp Chirp!");
+        System.out.println("Sound: Chip chip");
     }
 
     @Override
     public void eat() {
-        System.out.println("Eat: Worms and seeds.");
+        System.out.println("Food: Worms");
     }
 }
 
@@ -121,16 +118,17 @@ class Fish extends Osteichthyes {
 
     @Override
     public void sound() {
-        System.out.println("Sound: ... (Glub Glub)");
+        System.out.println("Sound: Pop pop");
     }
 
     @Override
     public void eat() {
-        System.out.println("Eat: Plankton and small fish.");
+        System.out.println("Food: Small Fish");
     }
 }
 
-// --- 5. Specific Species ---
+// ======================
+
 class ThaiRidgeBack extends Dog {
     private String origin;
 
@@ -145,10 +143,16 @@ class ThaiRidgeBack extends Dog {
 }
 
 class HummingBird extends Bird {
+    public HummingBird(Color color, Size size, String egg) {
+        super(color, size, egg);
+    }
+}
+
+class AngleFish extends Fish {
     private String location;
 
-    public HummingBird(Color color, Size size, String eggDesc, String location) {
-        super(color, size, eggDesc);
+    public AngleFish(Color color, Size size, String waterGroup, String location) {
+        super(color, size, waterGroup);
         this.location = location;
     }
 
@@ -157,37 +161,35 @@ class HummingBird extends Bird {
     }
 }
 
-class AngelFish extends Fish {
-    public AngelFish(Color color, Size size, String waterGroup) {
-        super(color, size, waterGroup);
-    }
-}
+// ======================
 
-// --- 6. Main Execution ---
-public class Main {
+public class App {
     public static void main(String[] args) {
-        ThaiRidgeBack trb = new ThaiRidgeBack(Color.BROWN, Size.MEDIUM, 4, true, "Thailand");
-        trb.printInfo();
-        trb.eat();
-        trb.run();
-        trb.sound();
-        trb.bark();
-        trb.bite();
-        trb.showOrigin();
-        
-        System.out.println("-------------------------------");
 
-        HummingBird hmb = new HummingBird(Color.GREY, Size.SMALL, "Tiny White Egg", "Tropical Forest");
-        hmb.printInfo();
-        hmb.fly();
-        hmb.eat();
-        hmb.showLocation();
+        ThaiRidgeBack dog = new ThaiRidgeBack(
+                Color.BROWN, Size.MEDIUM, 5, true, "Thailand"
+        );
 
-        System.out.println("-------------------------------");
+        dog.info();
+        dog.sound();
+        dog.eat();
+        dog.run();
+        dog.bark();
+        dog.bite();
+        dog.showOrigin();
 
-        AngelFish af = new AngelFish(Color.WHITE_STRIPES, Size.SMALL, "Saltwater");
-        af.printInfo();
-        af.swimming();
-        af.eat();
+        System.out.println("----------------");
+
+        HummingBird bird = new HummingBird(Color.WHITE, Size.SMALL, "Small egg");
+        bird.info();
+        bird.fly();
+        bird.sound();
+
+        System.out.println("----------------");
+
+        AngleFish fish = new AngleFish(Color.GREY, Size.SMALL, "Salt Water", "Pacific Ocean");
+        fish.info();
+        fish.swim();
+        fish.showLocation();
     }
 }
