@@ -1,11 +1,16 @@
 using System;
 
 // --- 1. Enums ---
-public enum Color { Black, White, Grey, Brown, DarkBrown, BlackStripes, WhiteStripes }
-public enum Size { Small, Medium, Large, Huge }
+enum Color {
+    BLACK, WHITE, GREY, BROWN, DARK_BROWN, BLACK_STRIPES, WHITE_STRIPES
+}
+
+enum Size {
+    SMALL, MEDIUM, LARGE, HUGE
+}
 
 // --- 2. Abstract Class: Animal ---
-public abstract class Animal {
+abstract class Animal {
     protected Color color;
     protected Size size;
 
@@ -19,13 +24,12 @@ public abstract class Animal {
 
     public void PrintInfo() {
         Console.WriteLine("--- " + this.GetType().Name + " ---");
-        // C# prints Enum names nicely by default
-        Console.WriteLine($"Color: {color}, Size: {size}");
+        Console.WriteLine("Color: " + color + ", Size: " + size);
     }
 }
 
 // --- 3. Intermediate Classes ---
-public abstract class Mammalia : Animal {
+abstract class Mammalia : Animal {
     protected int numberBabies;
 
     public Mammalia(Color color, Size size, int numberBabies) : base(color, size) {
@@ -37,16 +41,16 @@ public abstract class Mammalia : Animal {
     }
 }
 
-public abstract class Aves : Animal {
-    public Aves(Color color, Size size) : base(color, size) { }
+abstract class Aves : Animal {
+    public Aves(Color color, Size size) : base(color, size) {}
 
     public void Fly() {
         Console.WriteLine("Moving: Flying in the sky.");
     }
 }
 
-public abstract class Osteichthyes : Animal {
-    public Osteichthyes(Color color, Size size) : base(color, size) { }
+abstract class Osteichthyes : Animal {
+    public Osteichthyes(Color color, Size size) : base(color, size) {}
 
     public void Swimming() {
         Console.WriteLine("Moving: Swimming in the water.");
@@ -54,7 +58,7 @@ public abstract class Osteichthyes : Animal {
 }
 
 // --- 4. Concrete Classes ---
-public class Dog : Mammalia {
+class Dog : Mammalia {
     protected bool fierce;
 
     public Dog(Color color, Size size, int numberBabies, bool fierce) : base(color, size, numberBabies) {
@@ -74,15 +78,12 @@ public class Dog : Mammalia {
     }
 
     public void Bite() {
-        if (fierce) {
-            Console.WriteLine("Action: Warning! It bites!");
-        } else {
-            Console.WriteLine("Action: It plays gently (not biting).");
-        }
+        Console.WriteLine("Fierce Status: " + fierce); 
+        Console.WriteLine("Action: Warning! It bites!");
     }
 }
 
-public class Bird : Aves {
+class Bird : Aves {
     protected string eggDesc;
 
     public Bird(Color color, Size size, string eggDesc) : base(color, size) {
@@ -98,7 +99,7 @@ public class Bird : Aves {
     }
 }
 
-public class Fish : Osteichthyes {
+class Fish : Osteichthyes {
     protected string waterGroup;
 
     public Fish(Color color, Size size, string waterGroup) : base(color, size) {
@@ -115,7 +116,7 @@ public class Fish : Osteichthyes {
 }
 
 // --- 5. Specific Species ---
-public class ThaiRidgeBack : Dog {
+class ThaiRidgeBack : Dog {
     private string origin;
 
     public ThaiRidgeBack(Color color, Size size, int numberBabies, bool fierce, string origin) 
@@ -124,11 +125,11 @@ public class ThaiRidgeBack : Dog {
     }
 
     public void ShowOrigin() {
-        Console.WriteLine($"Origin: {origin}");
+        Console.WriteLine("Origin: " + origin);
     }
 }
 
-public class HummingBird : Bird {
+class HummingBird : Bird {
     private string location;
 
     public HummingBird(Color color, Size size, string eggDesc, string location) 
@@ -137,19 +138,18 @@ public class HummingBird : Bird {
     }
 
     public void ShowLocation() {
-        Console.WriteLine($"Location: {location}");
+        Console.WriteLine("Location: " + location);
     }
 }
 
-public class AngelFish : Fish {
-    public AngelFish(Color color, Size size, string waterGroup) : base(color, size, waterGroup) { }
+class AngelFish : Fish {
+    public AngelFish(Color color, Size size, string waterGroup) : base(color, size, waterGroup) {}
 }
 
 // --- 6. Main Execution ---
 class Program {
     static void Main(string[] args) {
-        // Test ThaiRidgeBack
-        ThaiRidgeBack trb = new ThaiRidgeBack(Color.Brown, Size.Medium, 4, true, "Thailand");
+        ThaiRidgeBack trb = new ThaiRidgeBack(Color.BROWN, Size.MEDIUM, 4, true, "Thailand");
         trb.PrintInfo();
         trb.Eat();
         trb.Run();
@@ -157,18 +157,18 @@ class Program {
         trb.Bark();
         trb.Bite();
         trb.ShowOrigin();
+
         Console.WriteLine("-------------------------------");
 
-        // Test HummingBird
-        HummingBird hmb = new HummingBird(Color.Grey, Size.Small, "Tiny White Egg", "Tropical Forest");
+        HummingBird hmb = new HummingBird(Color.GREY, Size.SMALL, "Tiny White Egg", "Tropical Forest");
         hmb.PrintInfo();
         hmb.Fly();
         hmb.Eat();
         hmb.ShowLocation();
+
         Console.WriteLine("-------------------------------");
 
-        // Test AngelFish
-        AngelFish af = new AngelFish(Color.WhiteStripes, Size.Small, "Saltwater");
+        AngelFish af = new AngelFish(Color.WHITE_STRIPES, Size.SMALL, "Saltwater");
         af.PrintInfo();
         af.Swimming();
         af.Eat();
