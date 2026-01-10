@@ -1,6 +1,6 @@
 // Save as Main.java
 
-// --- 1. Enum แบบสั้น 
+// --- 1. Enum ---
 enum Color {
     BLACK, WHITE, GREY, BROWN, DARK_BROWN, BLACK_STRIPES, WHITE_STRIPES
 }
@@ -14,6 +14,7 @@ abstract class Animal {
     protected Color color;
     protected Size size;
 
+    // Constructor
     public Animal(Color color, Size size) {
         this.color = color;
         this.size = size;
@@ -24,12 +25,11 @@ abstract class Animal {
 
     public void printInfo() {
         System.out.println("--- " + this.getClass().getSimpleName() + " ---");
-        // เรียกใช้ color, size ตรงๆ ได้เลย Java จะปริ้นชื่อ Enum ออกมาเอง
         System.out.println("Color: " + color + ", Size: " + size);
     }
 }
 
-// --- 3. Intermediate Classes (Abstract) ---
+// --- 3. Intermediate Classes ---
 abstract class Mammalia extends Animal {
     protected int numberBabies;
 
@@ -87,9 +87,9 @@ class Dog extends Mammalia {
     }
 
     public void bite() {
-        if (fierce) System.out.println("Action: Warning! It bites!");
-        else System.out.println("Action: It plays gently.");
-    }
+    System.out.println("Fierce Status: " + fierce); 
+    System.out.println("Action: Warning! It bites!");
+  }
 }
 
 class Bird extends Aves {
@@ -170,6 +170,9 @@ public class Main {
         trb.printInfo();
         trb.eat();
         trb.run();
+        trb.sound();
+        trb.bark();
+        trb.bite();
         trb.showOrigin();
         
         System.out.println("-------------------------------");
