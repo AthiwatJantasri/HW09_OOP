@@ -1,21 +1,12 @@
 // Save as Main.java
 
-// --- 1. Enums ---
+// --- 1. Enum แบบสั้น 
 enum Color {
-    BLACK("Black"), WHITE("White"), GREY("Grey"), BROWN("Brown"),
-    DARK_BROWN("Dark Brown"), BLACK_STRIPES("Black Stripes"), WHITE_STRIPES("White Stripes");
-
-    private String value;
-    Color(String value) { this.value = value; }
-    public String getValue() { return value; }
+    BLACK, WHITE, GREY, BROWN, DARK_BROWN, BLACK_STRIPES, WHITE_STRIPES
 }
 
 enum Size {
-    SMALL("Small"), MEDIUM("Medium"), LARGE("Large"), HUGE("Huge");
-
-    private String value;
-    Size(String value) { this.value = value; }
-    public String getValue() { return value; }
+    SMALL, MEDIUM, LARGE, HUGE
 }
 
 // --- 2. Abstract Class: Animal ---
@@ -33,12 +24,12 @@ abstract class Animal {
 
     public void printInfo() {
         System.out.println("--- " + this.getClass().getSimpleName() + " ---");
-        System.out.println("Color: " + color.getValue() + ", Size: " + size.getValue());
+        // เรียกใช้ color, size ตรงๆ ได้เลย Java จะปริ้นชื่อ Enum ออกมาเอง
+        System.out.println("Color: " + color + ", Size: " + size);
     }
 }
 
-// --- 3. Intermediate Classes (ต้องเป็น abstract เพราะยังไม่ได้ implement eat/sound) ---
-
+// --- 3. Intermediate Classes (Abstract) ---
 abstract class Mammalia extends Animal {
     protected int numberBabies;
 
@@ -72,8 +63,7 @@ abstract class Osteichthyes extends Animal {
     }
 }
 
-// --- 4. Concrete Classes (Implement methods here) ---
-
+// --- 4. Concrete Classes ---
 class Dog extends Mammalia {
     protected boolean fierce;
 
@@ -97,11 +87,8 @@ class Dog extends Mammalia {
     }
 
     public void bite() {
-        if (fierce) {
-            System.out.println("Action: Warning! It bites!");
-        } else {
-            System.out.println("Action: It plays gently (not biting).");
-        }
+        if (fierce) System.out.println("Action: Warning! It bites!");
+        else System.out.println("Action: It plays gently.");
     }
 }
 
@@ -183,10 +170,8 @@ public class Main {
         trb.printInfo();
         trb.eat();
         trb.run();
-        trb.sound();
-        trb.bark();
-        trb.bite();
         trb.showOrigin();
+        
         System.out.println("-------------------------------");
 
         HummingBird hmb = new HummingBird(Color.GREY, Size.SMALL, "Tiny White Egg", "Tropical Forest");
@@ -194,6 +179,7 @@ public class Main {
         hmb.fly();
         hmb.eat();
         hmb.showLocation();
+
         System.out.println("-------------------------------");
 
         AngelFish af = new AngelFish(Color.WHITE_STRIPES, Size.SMALL, "Saltwater");
