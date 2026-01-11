@@ -172,6 +172,7 @@ class AngleFish extends Fish {
     public void info() {
         // แก้แล้ว: เขียนชื่อตรงๆ
         System.out.println("--Fish--");
+        System.out.println("__AngleFish__");
         System.out.println("Color: " + color + " | Size: " + size);
         System.out.println("Water: " + waterGroup);
     }
@@ -190,13 +191,11 @@ public class App {
                 Color.BROWN, Size.MEDIUM, 5, true, "Thailand"
         );
 
-        dog.info(); // จะโชว์ครบ เพราะเราเขียนใน ThaiRidgeBack ไว้แล้ว
+        dog.info();
         dog.sound();
         dog.eat();
         dog.run();
         dog.bark();
-        // dog.bite();
-        // dog.showOrigin(); // ไม่จำเป็นต้องเรียกก็ได้ เพราะ info โชว์แล้ว
 
         System.out.println("----------------");
 
