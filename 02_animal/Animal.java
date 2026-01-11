@@ -92,13 +92,6 @@ class Bird extends Aves {
         super(color, size);
         this.egg = egg;
     }
-    
-    public void info() {
-        // แก้แล้ว: เขียนชื่อตรงๆ
-        System.out.println("__Bird__");
-        System.out.println("Color: " + color + " | Size: " + size);
-        System.out.println("Egg Type: " + egg);
-    }
 
     @Override
     public void sound() {
@@ -117,13 +110,6 @@ class Fish extends Osteichthyes {
     public Fish(Color color, Size size, String waterGroup) {
         super(color, size);
         this.waterGroup = waterGroup;
-    }
-    
-    public void info() {
-        // แก้แล้ว: เขียนชื่อตรงๆ
-        System.out.println("__Fish__");
-        System.out.println("Color: " + color + " | Size: " + size);
-        System.out.println("Water: " + waterGroup);
     }
 
     @Override
@@ -148,6 +134,7 @@ class ThaiRidgeBack extends Dog {
     }
     
     public void info() {
+      System.out.println("--Dog--");
       System.out.println("__ThaiRidgeBack__"); // เขียนชื่อตรงๆ
       System.out.println("Color: " + color + " | Size: " + size);
       System.out.println("Babies: " + numberBabies);
@@ -165,7 +152,13 @@ class HummingBird extends Bird {
         super(color, size, egg);
     }
     
-    // ไม่ได้ override info ลูกเลยจะใช้ของแม่ (Bird) ดังนั้นจะขึ้นว่า __Bird__
+    public void info() {
+        // แก้แล้ว: เขียนชื่อตรงๆ
+        System.out.println("--Bird--");
+        System.out.println("__HummingBird");
+        System.out.println("Color: " + color + " | Size: " + size);
+        System.out.println("Egg Type: " + egg);
+    }
 }
 
 class AngleFish extends Fish {
@@ -174,6 +167,13 @@ class AngleFish extends Fish {
     public AngleFish(Color color, Size size, String waterGroup, String location) {
         super(color, size, waterGroup);
         this.location = location;
+    }
+    
+    public void info() {
+        // แก้แล้ว: เขียนชื่อตรงๆ
+        System.out.println("--Fish--");
+        System.out.println("Color: " + color + " | Size: " + size);
+        System.out.println("Water: " + waterGroup);
     }
 
     public void showLocation() {
