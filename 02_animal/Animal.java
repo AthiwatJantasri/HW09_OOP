@@ -14,14 +14,11 @@ abstract class Animal {
         this.color = color;
         this.size = size;
     }
-
+    
+    // Abstract Method บังคับให้ลูกไปเขียนเอง
     public abstract void sound();
     public abstract void eat();
-
-    public void info() {
-        System.out.println("__" + this.getClass().getSimpleName() + "__");
-        System.out.println("Color: " + color + " Size: " + size);
-    }
+    public abstract void info();
 }
 
 // ======================
@@ -68,6 +65,15 @@ class Dog extends Mammalia {
         super(color, size, numberBabies);
         this.fierce = fierce;
     }
+    
+    @Override
+    public void info() {
+        // แก้แล้ว: เขียนชื่อตรงๆ ไปเลย ง่ายดี
+        System.out.println("__Dog__"); 
+        System.out.println("Color: " + color + " | Size: " + size);
+        System.out.println("Babies: " + numberBabies);
+        System.out.println("Fierce: " + (fierce ? "Yes" : "No"));
+    }
 
     @Override
     public void sound() {
@@ -96,6 +102,14 @@ class Bird extends Aves {
         super(color, size);
         this.egg = egg;
     }
+    
+    @Override
+    public void info() {
+        // แก้แล้ว: เขียนชื่อตรงๆ
+        System.out.println("__Bird__");
+        System.out.println("Color: " + color + " | Size: " + size);
+        System.out.println("Egg Type: " + egg);
+    }
 
     @Override
     public void sound() {
@@ -114,6 +128,14 @@ class Fish extends Osteichthyes {
     public Fish(Color color, Size size, String waterGroup) {
         super(color, size);
         this.waterGroup = waterGroup;
+    }
+    
+    @Override
+    public void info() {
+        // แก้แล้ว: เขียนชื่อตรงๆ
+        System.out.println("__Fish__");
+        System.out.println("Color: " + color + " | Size: " + size);
+        System.out.println("Water: " + waterGroup);
     }
 
     @Override
@@ -137,6 +159,16 @@ class ThaiRidgeBack extends Dog {
         this.origin = origin;
     }
 
+    // เขียนทับใหม่ เพื่อเปลี่ยนชื่อหัวข้อ และเพิ่ม Origin
+    @Override
+    public void info() {
+        System.out.println("__ThaiRidgeBack__"); // เขียนชื่อตรงๆ
+        System.out.println("Color: " + color + " | Size: " + size);
+        System.out.println("Babies: " + numberBabies);
+        System.out.println("Fierce: " + (fierce ? "Yes" : "No"));
+        System.out.println("Origin: " + origin);
+    }
+
     public void showOrigin() {
         System.out.println("Origin: " + origin);
     }
@@ -146,6 +178,8 @@ class HummingBird extends Bird {
     public HummingBird(Color color, Size size, String egg) {
         super(color, size, egg);
     }
+    
+    // ไม่ได้ override info ลูกเลยจะใช้ของแม่ (Bird) ดังนั้นจะขึ้นว่า __Bird__
 }
 
 class AngleFish extends Fish {
@@ -170,13 +204,13 @@ public class App {
                 Color.BROWN, Size.MEDIUM, 5, true, "Thailand"
         );
 
-        dog.info();
+        dog.info(); // จะโชว์ครบ เพราะเราเขียนใน ThaiRidgeBack ไว้แล้ว
         dog.sound();
         dog.eat();
         dog.run();
         dog.bark();
-        dog.bite();
-        dog.showOrigin();
+        // dog.bite();
+        // dog.showOrigin(); // ไม่จำเป็นต้องเรียกก็ได้ เพราะ info โชว์แล้ว
 
         System.out.println("----------------");
 
