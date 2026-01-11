@@ -18,7 +18,6 @@ abstract class Animal {
     // Abstract Method บังคับให้ลูกไปเขียนเอง
     public abstract void sound();
     public abstract void eat();
-    public abstract void info();
 }
 
 // ======================
@@ -66,7 +65,6 @@ class Dog extends Mammalia {
         this.fierce = fierce;
     }
     
-    @Override
     public void info() {
         // แก้แล้ว: เขียนชื่อตรงๆ ไปเลย ง่ายดี
         System.out.println("__Dog__"); 
@@ -103,7 +101,6 @@ class Bird extends Aves {
         this.egg = egg;
     }
     
-    @Override
     public void info() {
         // แก้แล้ว: เขียนชื่อตรงๆ
         System.out.println("__Bird__");
@@ -130,7 +127,6 @@ class Fish extends Osteichthyes {
         this.waterGroup = waterGroup;
     }
     
-    @Override
     public void info() {
         // แก้แล้ว: เขียนชื่อตรงๆ
         System.out.println("__Fish__");
@@ -159,8 +155,6 @@ class ThaiRidgeBack extends Dog {
         this.origin = origin;
     }
 
-    // เขียนทับใหม่ เพื่อเปลี่ยนชื่อหัวข้อ และเพิ่ม Origin
-    @Override
     public void info() {
         System.out.println("__ThaiRidgeBack__"); // เขียนชื่อตรงๆ
         System.out.println("Color: " + color + " | Size: " + size);
