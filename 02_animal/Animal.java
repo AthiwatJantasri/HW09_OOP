@@ -64,14 +64,6 @@ class Dog extends Mammalia {
         super(color, size, numberBabies);
         this.fierce = fierce;
     }
-    
-    public void info() {
-        // แก้แล้ว: เขียนชื่อตรงๆ ไปเลย ง่ายดี
-        System.out.println("__Dog__"); 
-        System.out.println("Color: " + color + " | Size: " + size);
-        System.out.println("Babies: " + numberBabies);
-        System.out.println("Fierce: " + (fierce ? "Yes" : "No"));
-    }
 
     @Override
     public void sound() {
@@ -154,13 +146,13 @@ class ThaiRidgeBack extends Dog {
         super(color, size, numberBabies, fierce);
         this.origin = origin;
     }
-
+    
     public void info() {
-        System.out.println("__ThaiRidgeBack__"); // เขียนชื่อตรงๆ
-        System.out.println("Color: " + color + " | Size: " + size);
-        System.out.println("Babies: " + numberBabies);
-        System.out.println("Fierce: " + (fierce ? "Yes" : "No"));
-        System.out.println("Origin: " + origin);
+      System.out.println("__ThaiRidgeBack__"); // เขียนชื่อตรงๆ
+      System.out.println("Color: " + color + " | Size: " + size);
+      System.out.println("Babies: " + numberBabies);
+      System.out.println("Fierce: " + (fierce ? "Yes" : "No"));
+      System.out.println("Origin: " + origin);
     }
 
     public void showOrigin() {
